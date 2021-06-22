@@ -2,16 +2,18 @@
 //  EmojiArtApp.swift
 //  EmojiArt
 //
-//  Created by Manu on 18/06/2021.
+//  Created by Manuel Lorenzo (@noloman) on 18/06/2021.
 //
 
 import SwiftUI
 
 @main
 struct EmojiArtApp: App {
+    let document = EmojiArtDocument()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            EmojiArtDocumentView(document: document)
         }
     }
 }
