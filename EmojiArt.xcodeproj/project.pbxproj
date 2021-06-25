@@ -15,6 +15,7 @@
 		32E0FB0B267CE16F00A675ED /* EmojiArt+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0FB0A267CE16F00A675ED /* EmojiArt+Background.swift */; };
 		32E0FB0D267CE2AA00A675ED /* EmojiArtDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0FB0C267CE2AA00A675ED /* EmojiArtDocument.swift */; };
 		32E0FB0F267CE4A200A675ED /* UtilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0FB0E267CE4A200A675ED /* UtilityExtensions.swift */; };
+		32E0FB112683173C00A675ED /* UtilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0FB102683173C00A675ED /* UtilityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		32E0FB0A267CE16F00A675ED /* EmojiArt+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmojiArt+Background.swift"; sourceTree = "<group>"; };
 		32E0FB0C267CE2AA00A675ED /* EmojiArtDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocument.swift; sourceTree = "<group>"; };
 		32E0FB0E267CE4A200A675ED /* UtilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityExtensions.swift; sourceTree = "<group>"; };
+		32E0FB102683173C00A675ED /* UtilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				3251393F267CDDF400BC7897 /* Preview Content */,
 				32E0FB0C267CE2AA00A675ED /* EmojiArtDocument.swift */,
 				32E0FB0E267CE4A200A675ED /* UtilityExtensions.swift */,
+				32E0FB102683173C00A675ED /* UtilityView.swift */,
 			);
 			path = EmojiArt;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				32E0FB0F267CE4A200A675ED /* UtilityExtensions.swift in Sources */,
 				32E0FB0D267CE2AA00A675ED /* EmojiArtDocument.swift in Sources */,
 				32E0FB0B267CE16F00A675ED /* EmojiArt+Background.swift in Sources */,
+				32E0FB112683173C00A675ED /* UtilityView.swift in Sources */,
 				3251393A267CDDF300BC7897 /* EmojiArtApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
