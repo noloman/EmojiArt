@@ -26,10 +26,14 @@ struct EmojiArtDocumentView: View {
                     OptionalImage(uiImage: document.backgroundImage)
                         .position(convertFromEmojiCoordinates((0,0), in: geometry))
                 )
-                ForEach(document.emojis) { emoji in
-                    Text(emoji.text)
-                        .font(.system(size: fontSize(for: emoji)))
-                        .position(position(for: emoji, in: geometry))
+                if document.backgroundImageFetchStatus == .fetching {
+                    ProgressView()
+                } else {
+                    ForEach(document.emojis) { emoji in
+                        Text(emoji.text)
+                            .font(.system(size: fontSize(for: emoji)))
+                            .position(position(for: emoji, in: geometry))
+                    }
                 }
             }
             .onDrop(of: [.plainText], isTargeted: nil) { providers, location in
