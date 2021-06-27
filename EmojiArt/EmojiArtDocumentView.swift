@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmojiArtDocumentView: View {
     let testEmojis = "😀 😃 😄 😁 😆 😅 😂 🤣 🥲 ☺️ 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🥸 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤬 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾"
+    @State var selectedEmojis: Set<EmojiArt.Emoji> = []
     
     @ObservedObject var document: EmojiArtDocument
     
@@ -47,9 +48,13 @@ struct EmojiArtDocumentView: View {
                 } else {
                     ForEach(document.emojis) { emoji in
                         Text(emoji.text)
+                            .selectable(select: $selectedEmojis.wrappedValue.contains(emoji)) {
+                                selectedEmojis.toggleMatching(element: emoji)
+                            }
                             .font(.system(size: fontSize(for: emoji)))
                             .scaleEffect(zoomScale)
                             .position(position(for: emoji, in: geometry))
+                            .onDrag { NSItemProvider(object: emoji.text as NSString) }
                             .contextMenu {
                                 Button {
                                     removeEmoji(emoji)

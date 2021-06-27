@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import SwiftUI
 
 extension Collection where Element: Identifiable {
     func index(matching element: Element) -> Self.Index? {
@@ -120,5 +121,21 @@ extension CGSize {
     }
     static func /(lhs: Self, rhs: CGFloat) -> CGSize {
         CGSize(width: lhs.width/rhs, height: lhs.height/rhs)
+    }
+}
+
+extension Set where Element : Identifiable {
+    mutating func toggleMatching(element: Element) {
+        if contains(element) {
+            remove(element)
+        } else {
+            insert(element)
+        }
+    }
+}
+
+extension View {
+    func selectable(select: Bool, onTapped: @escaping () -> Void) -> some View {
+        modifier(Selectable(select: select, onTapped: onTapped))
     }
 }
