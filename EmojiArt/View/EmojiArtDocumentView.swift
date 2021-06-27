@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EmojiArtDocumentView: View {
-    let testEmojis = "😀 😃 😄 😁 😆 😅 😂 🤣 🥲 ☺️ 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🥸 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤬 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾"
     @State var selectedEmojis: Set<EmojiArt.Emoji> = []
     
     @ObservedObject var document: EmojiArtDocument
@@ -27,11 +26,17 @@ struct EmojiArtDocumentView: View {
     
     let defaultEmojiFontSize: CGFloat = 40
     
+    // MARK: - Variables
     var body: some View {
         VStack(spacing: 0) {
             documentBody
             palette
         }
+    }
+    
+    var palette: some View {
+        ScrollingEmojisView()
+            .font(.system(size: defaultEmojiFontSize))
     }
     
     var documentBody: some View {
@@ -73,10 +78,12 @@ struct EmojiArtDocumentView: View {
         }
     }
     
+    // MARK: - Intent(s)
     private func removeEmoji(_ emoji: EmojiArt.Emoji) {
         document.removeEmoji(emoji)
     }
     
+    // MARK: - Gestures
     private func panGesture() -> some Gesture {
         DragGesture()
             .updating($gesturePanOffset) { latestDragGestureValue, gesturePanOffset, _ in
@@ -149,11 +156,6 @@ struct EmojiArtDocumentView: View {
         return (Int(location.x), Int(location.y))
     }
     
-    var palette: some View {
-        ScrollingEmojisView(emojis: testEmojis)
-            .font(.system(size: defaultEmojiFontSize))
-    }
-    
     private func position(for emoji: EmojiArt.Emoji, in geometry: GeometryProxy) -> CGPoint {
         convertFromEmojiCoordinates((emoji.x, emoji.y), in: geometry)
     }
@@ -168,20 +170,6 @@ struct EmojiArtDocumentView: View {
             x: center.x + CGFloat(location.x) * zoomScale + panOffset.width,
             y: center.y + CGFloat(location.y) * zoomScale + panOffset.height
         )
-    }
-}
-
-struct ScrollingEmojisView: View {
-    let emojis: String
-    var body: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                ForEach(emojis.map { String($0) }, id: \.self) { emoji in
-                    Text(emoji)
-                        .onDrag { NSItemProvider(object: emoji as NSString) }
-                }
-            }
-        }
     }
 }
 
