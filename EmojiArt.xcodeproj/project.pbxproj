@@ -66,14 +66,14 @@
 		32513938267CDDF300BC7897 /* EmojiArt */ = {
 			isa = PBXGroup;
 			children = (
+				32E0FB0C267CE2AA00A675ED /* EmojiArtDocument.swift */,
+				326D0CEC268CE6DE002A1A38 /* Utility */,
 				32A1F7382688BA6400B99F51 /* View */,
 				32E0FB07267CDF8700A675ED /* Model */,
 				32513939267CDDF300BC7897 /* EmojiArtApp.swift */,
 				3251393D267CDDF400BC7897 /* Assets.xcassets */,
 				32513942267CDDF400BC7897 /* Info.plist */,
 				3251393F267CDDF400BC7897 /* Preview Content */,
-				32E0FB0C267CE2AA00A675ED /* EmojiArtDocument.swift */,
-				32E0FB0E267CE4A200A675ED /* UtilityExtensions.swift */,
 			);
 			path = EmojiArt;
 			sourceTree = "<group>";
@@ -84,6 +84,14 @@
 				32513940267CDDF400BC7897 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		326D0CEC268CE6DE002A1A38 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				32E0FB0E267CE4A200A675ED /* UtilityExtensions.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		32A1F7382688BA6400B99F51 /* View */ = {
