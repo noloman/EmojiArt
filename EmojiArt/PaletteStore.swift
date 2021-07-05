@@ -58,6 +58,7 @@ class PaletteStore: ObservableObject {
     
     init (named: String) {
         self.name = named
+        restoreFromUserDefaults()
         if palettes.isEmpty {
             print("Using built-in palettes")
             insertPalette(named: "Vehicles", emojis: "🚙🚗🚘🚕🚖🏎🚚🛻🚛🚐🚓🚔🚑🚒🚀✈️🛫🛬🛩🚁🛸🚲🏍🛶⛵️🚤🛥🛳⛴🚢🚂🚝🚅🚆🚊🚉🚇🛺🚜")

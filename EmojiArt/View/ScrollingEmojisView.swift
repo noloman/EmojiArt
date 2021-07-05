@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScrollingEmojisView: View {
-    let emojis = "😀 😃 😄 😁 😆 😅 😂 🤣 🥲 ☺️ 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨 🧐 🤓 😎 🥸 🤩 🥳 😏 😒 😞 😔 😟 😕 🙁 ☹️ 😣 😖 😫 😩 🥺 😢 😭 😤 😠 😡 🤬 🤯 😳 🥵 🥶 😱 😨 😰 😥 😓 🤗 🤔 🤭 🤫 🤥 😶 😐 😑 😬 🙄 😯 😦 😧 😮 😲 🥱 😴 🤤 😪 😵 🤐 🥴 🤢 🤮 🤧 😷 🤒 🤕 🤑 🤠 😈 👿 👹 👺 🤡 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾"
+    let emojis: String
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
@@ -18,11 +18,5 @@ struct ScrollingEmojisView: View {
                 }
             }
         }
-    }
-}
-
-struct ScrollingEmojisView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollingEmojisView()
     }
 }

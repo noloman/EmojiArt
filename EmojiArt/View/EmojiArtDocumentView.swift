@@ -30,13 +30,8 @@ struct EmojiArtDocumentView: View {
     var body: some View {
         VStack(spacing: 0) {
             documentBody
-            palette
+            PaletteChooser(emojiFontSize: defaultEmojiFontSize)
         }
-    }
-    
-    var palette: some View {
-        ScrollingEmojisView()
-            .font(.system(size: defaultEmojiFontSize))
     }
     
     var documentBody: some View {
