@@ -21,6 +21,58 @@ extension CGRect {
     }
 }
 
+// some extensions to String and Character
+// to help us with managing our Strings of emojis
+// we want them to be "emoji only"
+// (thus isEmoji below)
+// and we don't want them to have repeated emojis
+// (thus withoutDuplicateCharacters below)
+
+extension String {
+    var removingDuplicateCharacters: String {
+        reduce(into: "") { sofar, element in
+            if !sofar.contains(element) {
+                sofar.append(element)
+            }
+        }
+    }
+}
+
+// we could do the same thing when it comes to removing an element
+// but we have to add that to a different protocol
+// because Collection works for immutable collections of things
+// the "mutable" one is RangeReplaceableCollection
+// not only could we add remove
+// but we could add a subscript which takes a copy of one of the elements
+// and uses its Identifiable-ness to subscript into the Collection
+// this is an awesome way to create Bindings into an Array in a ViewModel
+// (since any Published var in an ObservableObject can be bound to via $)
+// (even vars on that Published var or subscripts on that var)
+// (or subscripts on vars on that var, etc.)
+
+extension RangeReplaceableCollection where Element: Identifiable {
+    mutating func remove(_ element: Element) {
+        if let index = index(matching: element) {
+            remove(at: index)
+        }
+    }
+
+    subscript(_ element: Element) -> Element {
+        get {
+            if let index = index(matching: element) {
+                return self[index]
+            } else {
+                return element
+            }
+        }
+        set {
+            if let index = index(matching: element) {
+                replaceSubrange(index...index, with: [newValue])
+            }
+        }
+    }
+}
+
 // convenience functions for [NSItemProvider] (i.e. array of NSItemProvider)
 // makes the code for  loading objects from the providers a bit simpler
 // NSItemProvider is a holdover from the Objective-C (i.e. pre-Swift) world
