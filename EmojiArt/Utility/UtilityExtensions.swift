@@ -191,3 +191,8 @@ extension View {
         modifier(Selectable(select: select, onTapped: onTapped))
     }
 }
+
+struct IdentifiableAlert: Identifiable {
+    var id: String
+    var alert: () -> Alert
+}

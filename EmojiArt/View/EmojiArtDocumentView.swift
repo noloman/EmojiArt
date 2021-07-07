@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EmojiArtDocumentView: View {
     @State var selectedEmojis: Set<EmojiArt.Emoji> = []
+    @State private var alertToShow: IdentifiableAlert?
     
     @ObservedObject var document: EmojiArtDocument
     
@@ -70,10 +71,33 @@ struct EmojiArtDocumentView: View {
                 drop(providers, at: location, in: geometry)
             }
             .gesture(panGesture().simultaneously(with: zoomGesture()))
+            .alert(item: $alertToShow) { alertToShow in
+                // return Alert
+                alertToShow.alert()
+            }
+            .onChange(of: document.backgroundImageFetchStatus) { status in
+                switch status {
+                case .failed(let url):
+                    showBackgroundImageFetchFailedAlert(url)
+                default:
+                    break
+                }
+            }
+        }
+    }
+
+    // MARK: - Intent(s)
+    
+    private func showBackgroundImageFetchFailedAlert(_ url: URL) {
+        alertToShow = IdentifiableAlert(id: "Fetch failed: " + url.absoluteString) {
+            Alert(
+                title: Text("Background image fetch"),
+                message: Text("Could not load image from \(url)"),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
     
-    // MARK: - Intent(s)
     private func removeEmoji(_ emoji: EmojiArt.Emoji) {
         document.removeEmoji(emoji)
     }
