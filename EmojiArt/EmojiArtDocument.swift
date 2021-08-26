@@ -8,6 +8,9 @@
 import SwiftUI
 
 class EmojiArtDocument: ObservableObject {
+    var emojis: [EmojiArt.Emoji] { emojiArt.emojis }
+    var background: EmojiArt.Background { emojiArt.background }
+    
     @Published private(set) var emojiArt: EmojiArt {
         didSet {
             autoSave()
@@ -16,6 +19,8 @@ class EmojiArtDocument: ObservableObject {
             }
         }
     }
+    @Published var backgroundImage: UIImage?
+    @Published var backgroundImageFetchStatus: BackgroundImageFetchStatus = .idle
     
     init() {
         if let url = Autosave.url, let autoSavedEmojiArt = try? EmojiArt(url: url) {
@@ -25,12 +30,6 @@ class EmojiArtDocument: ObservableObject {
             emojiArt = EmojiArt()
         }
     }
-    
-    var emojis: [EmojiArt.Emoji] { emojiArt.emojis }
-    var background: EmojiArt.Background { emojiArt.background }
-    
-    @Published var backgroundImage: UIImage?
-    @Published var backgroundImageFetchStatus: BackgroundImageFetchStatus = .idle
     
     enum BackgroundImageFetchStatus: Equatable {
         case idle
